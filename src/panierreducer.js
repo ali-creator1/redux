@@ -4,12 +4,18 @@ const initialPanierState = {
 
 export const panierReducer = (state = initialPanierState, action) => {
   switch (action.type) {
-    case "ADD_TO_PANIER":
-      return {...state, panier: [...state.panier, action.payload],
+    case "AJOUTER_ARTICLE":
+      return {
+        ...state,
+        panier: [...state.panier, action.payload],
       };
 
-    case "REMOVE_FROM_PANIER":
-      return { ...state, panier: state.panier.filter((panier) => panier.id !== action.payload),
+    case "SUPPRIMER_ARTICLE":
+      return {
+        ...state,
+        panier: state.panier.filter(
+          (item, index) => index !== action.payload
+        ),
       };
 
     default:
